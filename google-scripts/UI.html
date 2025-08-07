@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      input, button {
+        margin: 10px 0;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><strong>Selected Cell Message Will Be Reversed:</strong></p>
+    <button onclick="send()">Send to Server</button>
+    <p><strong>Server Response:</strong></p>
+    <div id="output">Waiting...</div>
+
+    <script>
+      function send() {
+        document.getElementById("output").innerText = "Processing...";
+
+        google.script.run.withSuccessHandler(function(response) {
+          document.getElementById("output").innerText = response;
+        }).reverseMessageFromSheet();
+      }
+    </script>
+  </body>
+</html>
 
